@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}
+    contacts
+{% endblock %}
+{% block body %}
+    <div class="container py-4 py-xl-5">
+        <div class="row mb-5">
+            <div class="col-md-8 col-xl-6 text-center mx-auto"><h2>Heading</h2>
+                <p class="w-lg-50">Curae hendrerit donec commodo hendrerit egestas tempus, turpis facilisis nostra nunc.
+                    Vestibulum dui eget ultrices.</p></div>
+        </div>
+        <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3">
+            {% for person in personals %}
+                <div class="col">
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#newsModal{{ loop.index }}">
+                        <div><img class="rounded img-fluid d-block w-100 fit-cover" style="height: 200px;" src="{{ person.image }}">
+                            <div class="py-4"><h4>{{ person.title }}</h4>
+                                <p>{{ person.content }}</p></div>
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+        </div>
+    </div><!-- End: Projects Grid -->
+
+    <!-- Modal -->
+    {% for person in personals %}
+        <div class="modal fade" id="newsModal{{ loop.index }}" tabindex="-1" aria-labelledby="newsModal{{ loop.index }}Label" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="newsModal{{ loop.index }}Label">{{ person.title }}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <h1>{{ person.description }}</h1>
+                        <img class="rounded img-fluid d-block w-100 fit-cover" style="height: 200px;" src="{{ person.image }}">
+                        <p>{{ person.content }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+{% endblock %}
+
+
+
+
+

@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}
+    catalog
+{% endblock %}
+{% block body %}
+        <form method="post" action="{{ url_for('catalog_get') }}">
+            <input type="hidden" name="category" value="catalog_get">
+            <div class="buttons">
+                <button id="btn-all" class="nav-item" type="submit">Все</button>
+            </div>
+        </form>
+
+    <form method="post" action="{{ url_for('tech') }}">
+        <input type="hidden" name="category" value="tech">
+        <div class="buttons">
+            <button id="btn-all" class="nav-item" type="submit">Техника</button>
+        </div>
+    </form>
+
+    <form method="post" action="{{ url_for('bags') }}">
+        <input type="hidden" name="category" value="bags">
+        <div class="buttons">
+            <button id="btn-all" class="nav-item" type="submit">Сумки</button>
+        </div>
+    </form>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Content</th>
+                <th>Image</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cat in new_list %}
+                <tr>
+                    <td>{{ cat.id }}</td>
+                    <td>{{ cat.title }}</td>
+                    <td>{{ cat.content }}</td>
+                    <td><img src="{{ cat.image }}" alt="{{ cat.title }}" style="height: 50px;"></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
